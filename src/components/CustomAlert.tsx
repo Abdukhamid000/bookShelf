@@ -7,12 +7,34 @@ type Props = {
 };
 
 const CustomAlert = ({ text, status }: Props) => {
+  const [show, setShow] = React.useState(true);
+
+  React.useEffect(() => {
+    const timeId = setTimeout(() => {
+      setShow(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, []);
+
+  if (!show) {
+    return null;
+  }
+
   return (
-    <>
-      {setTimeout(() => {
-        <Alert severity={status}>{text}</Alert>;
-      }, 500)}
-    </>
+    <Alert
+      style={{
+        position: "absolute",
+        top: 0,
+        left: "50%",
+        transition: "transform(-50%)",
+      }}
+      severity={status}
+    >
+      {text}
+    </Alert>
   );
 };
 

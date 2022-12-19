@@ -31,28 +31,10 @@ const SignUp = () => {
       secret: secretInput.current?.value,
     };
 
-    console.log(inputValues);
-
-    // console.log(inputValues);
     userCtx?.registerUser(inputValues);
   };
 
   return (
-    // <form onSubmit={submitHandler}>
-    //   <label htmlFor="name">Name:</label>
-    //   <input type="text" id="name" name="name" ref={nameInput} />
-
-    //   <label htmlFor="email">Email:</label>
-    //   <input type="email" id="email" name="email" ref={emailInput} />
-
-    //   <label htmlFor="key">Key:</label>
-    //   <input type="text" id="key" name="key" ref={keyInput} />
-
-    //   <label htmlFor="name">Secret:</label>
-    //   <input type="text" id="secret" name="secret" ref={secretInput} />
-
-    //   <button type="submit">show</button>
-
     <Grid container component="main" sx={{ height: "100vh" }}>
       <CssBaseline />
       <Grid

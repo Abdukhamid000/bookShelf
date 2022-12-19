@@ -19,8 +19,9 @@ const App = () => {
       <Navbar userInfo={userInfo} />
       <Routes>
         <Route path="/" element={<SignUp />} />
-        {(authCtx?.user || userInfo) && "asd"}
-        <Route path="book" element={<Book />} />
+        {(authCtx?.user || userInfo) && (
+          <Route path="book" element={<Book />} />
+        )}
       </Routes>
     </div>
   );

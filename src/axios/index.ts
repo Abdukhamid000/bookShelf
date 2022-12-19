@@ -2,8 +2,11 @@ import axios from "axios";
 import CryptoJS from "crypto-js";
 import { UserInterface, ResponseInterface } from "../types/interfaces";
 
-let data = '{\n    "isbn":"9781118464467"\n}';
 const base = "https://no23.lavina.tech";
+const userInfo = localStorage.getItem("userInfo");
+if (userInfo) {
+  var user = JSON.parse(userInfo);
+}
 
 export const signUp = async (inputValues: UserInterface) => {
   try {
@@ -21,11 +24,18 @@ export const signUp = async (inputValues: UserInterface) => {
   }
 };
 
-export const editStatusReq = async (status: number) => {
-
-}
+export const editStatusReq = async (status: number) => {};
 
 export const deleteBookReq = async (id: number) => {
-  const { data } = await axios.delete(base + "delete/:" + id);
-  return data;
+  const signStr = CryptoJS.MD5(
+    `DELETEhttps://no23.lavina.tech/books/${id}secret`
+  ).toString();
+  console.log(signStr);
+
+  axios.delete(`https://no23.lavina.tech/books/${id}`, {
+    headers: {
+      Key: user?.data.key,
+      Sign: signStr,
+    },
+  });
 };
